@@ -26,6 +26,11 @@
   .card h3{ margin:14px 0 6px; font-size:16px; color:var(--navy); }
   label.flabel{ display:block; font-size:13px; letter-spacing:1px; text-transform:uppercase; color:#8a6d2f; margin:10px 0 6px; }
   input[type=text]{ width:100%; padding:11px; font-size:16px; font-family:inherit; border:1.5px solid var(--line); border-radius:9px; background:#fff; }
+  select{ padding:10px; font-size:15.5px; font-family:inherit; border:1.5px solid var(--line); border-radius:9px; background:#fff; color:var(--ink); max-width:100%; }
+  .codebig{ font-size:24px; font-weight:bold; letter-spacing:2px; color:var(--navy); }
+  .codechip{ display:inline-block; background:#eef2f7; border:1px solid var(--navy); color:var(--navy); border-radius:99px; padding:1px 9px; font-size:12px; font-weight:bold; letter-spacing:1px; }
+  .rowflex{ display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+  .rowflex input[type=text]{ flex:1; min-width:170px; width:auto; }
   .pick{ display:flex; align-items:center; gap:10px; width:100%; text-align:left; padding:9px 10px; margin:5px 0;
     border:1.5px solid var(--line); border-radius:10px; background:#fff; font-family:inherit; font-size:15.5px; cursor:pointer; color:var(--ink); }
   .pick.sel{ border-color:var(--navy); background:#eef2f7; box-shadow:inset 0 0 0 1.5px var(--navy); }
@@ -95,10 +100,25 @@
     <button data-tab="people">People <span id="pcount"></span></button>
     <button data-tab="combined">Combined</button>
     <button data-tab="share">Share</button>
+    <button data-tab="about">♥ About</button>
   </nav>
 
   <!-- ENTER -->
   <section id="tab-enter" class="active">
+    <div class="card">
+      <h2>Collection code</h2>
+      <div class="small">Every scorecard you save is stamped with the code below, so gatherings stay sorted — by church, group, or date. Everyone entering cards at the same gathering should use the same code, on every phone.</div>
+      <div style="margin:10px 0 4px;">Current code:</div>
+      <div class="codebig" id="activecode">—</div>
+      <label class="flabel" for="codeinput">Set a code</label>
+      <div class="rowflex">
+        <input type="text" id="codeinput" placeholder="e.g. IMMANUEL-OCT26" autocomplete="off">
+        <button class="ghostbtn" id="setcode" type="button">Use this code</button>
+        <button class="ghostbtn" id="gencode" type="button">🎲 Generate one</button>
+      </div>
+      <div class="small" id="editnote" style="margin-top:8px;"></div>
+    </div>
+
     <div class="card">
       <h2 id="formtitle">A person's scorecard</h2>
       <label class="flabel" for="pname">Name (optional)</label>
@@ -134,6 +154,10 @@
   <section id="tab-people">
     <div class="card">
       <h2>Scorecards gathered</h2>
+      <div class="rowflex" style="margin-bottom:6px;">
+        <label for="peoplefilter" class="small" style="font-size:14px;">Collection:</label>
+        <select id="peoplefilter"></select>
+      </div>
       <div id="peoplelist"></div>
       <div class="small" id="peopleEmpty">No scorecards yet. Add the first one in the Enter tab.</div>
     </div>
@@ -143,6 +167,10 @@
   <section id="tab-combined">
     <div class="card" id="printarea">
       <h2>The whole Body, on one picture</h2>
+      <div class="rowflex" style="margin-bottom:6px;">
+        <label for="combinedfilter" class="small" style="font-size:14px;">Showing:</label>
+        <select id="combinedfilter"></select>
+      </div>
       <div class="stat" id="respondents"></div>
       <div id="overallbar"></div>
       <div class="legend" id="overalllegend"></div>
@@ -161,6 +189,15 @@
       <div id="servecounts"></div>
       <h3>Reading the picture</h3>
       <div id="callouts"></div>
+      <div id="comparewrap" style="display:none;">
+        <h3>Compare two gatherings</h3>
+        <div class="rowflex">
+          <select id="compareA"></select>
+          <span class="small">then</span>
+          <select id="compareB"></select>
+        </div>
+        <div id="compareresult" style="margin-top:8px;"></div>
+      </div>
     </div>
   </section>
 
@@ -171,6 +208,12 @@
       <p class="stat">Everything is kept on this device. Send the collection to another device, or bring several devices' collections together, with these:</p>
       <button class="ghostbtn" id="expjson">⬇ Download the collection (JSON)</button>
       <button class="ghostbtn" id="expcsv">⬇ Download a spreadsheet (CSV)</button>
+      <br>
+      <label class="flabel" for="exportcode">Hand off just one gathering</label>
+      <div class="rowflex">
+        <select id="exportcode"></select>
+        <button class="ghostbtn" id="exponecode" type="button">⬇ Download this collection only</button>
+      </div>
       <br>
       <label class="flabel" for="impfile">Bring in a collection from another device</label>
       <input type="file" id="impfile" accept=".json,application/json">
@@ -186,6 +229,24 @@
       <p class="stat">2. Enter each person's card here — their household, the household they serve, and their forty chips.</p>
       <p class="stat">3. Open <b>Combined</b> and read the picture together: where the Body is faithful, where it is growing, and where it is scattered.</p>
       <p class="stat">4. Meeting in several rooms? Each room keeps its own collection, then one person imports them all into one device for the whole-church picture.</p>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="tab-about">
+    <div class="card">
+      <h2>About the creator</h2>
+      <p class="stat">The Cornerstone Scorecard was made by <b>Zachary Furr</b> of Little Rock, Arkansas — a writer, security supervisor, and Arkansas Army National Guard combat engineer — after sitting in a room where a whole state tried to see how it was connected, and wondering what the same picture would show a church.</p>
+      <p class="stat">Questions, ideas, or a story about what your church saw in its picture:<br>
+      📧 <a href="mailto:inconstantsnap@gmail.com">inconstantsnap@gmail.com</a></p>
+    </div>
+    <div class="card">
+      <h2>Thank you</h2>
+      <p class="stat">Thank you for using this tool. If it helped your church see itself more honestly — where the Body is faithful, where it is growing, and where it is scattered — then it did the job it was built for. May the threads that are weak today be the strongest ones at your next gathering.</p>
+      <h3>Keep it free for the next church</h3>
+      <p class="stat">This tool is free, and it will stay free. If it blessed your church and you'd like to help it reach others, a gift of any size is welcome:</p>
+      <p class="stat" style="font-size:20px;">💚 Cash App: <b>$forgotu</b></p>
+      <p class="small">“Freely you have received; freely give.” — Matthew 10:8</p>
     </div>
   </section>
 
@@ -216,6 +277,59 @@ let entries = load();
 let draft = freshDraft();
 let editingId = null;
 let talkHousehold = null;
+
+/* ---------- collection codes ---------- */
+const CODE_KEY = 'cornerstone-active-code-v1';
+let activeCode = localStorage.getItem(CODE_KEY) || '';
+let peopleFilter = 'ALL', combinedFilter = 'ALL', compareA = '', compareB = '';
+function normalizeCode(s){ return (s || '').toUpperCase().replace(/[^A-Z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 24); }
+function entryCode(e){ return e.code ? normalizeCode(e.code) : ''; }
+function codeLabel(c){ return c || 'NO CODE'; }
+function allCodes(){
+  const seen = [];
+  for (const e of entries) { const c = entryCode(e); if (!seen.includes(c)) seen.push(c); }
+  return seen.sort((a, b) => codeLabel(a).localeCompare(codeLabel(b)));
+}
+function entriesFor(filter){ return filter === 'ALL' ? entries : entries.filter(e => entryCode(e) === filter); }
+function genCode(){
+  const words = ['OAK','ELM','CEDAR','OLIVE','VINE','ACORN','LAUREL','FIG','MUSTARD','JUNIPER'];
+  const chars = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789';
+  let tail = ''; for (let i = 0; i < 4; i++) tail += chars[Math.floor(Math.random() * chars.length)];
+  return words[Math.floor(Math.random() * words.length)] + '-' + tail;
+}
+function setActive(code){
+  activeCode = normalizeCode(code);
+  if (activeCode) localStorage.setItem(CODE_KEY, activeCode); else localStorage.removeItem(CODE_KEY);
+  renderCodeCard();
+}
+function renderCodeCard(){
+  $('#activecode').textContent = activeCode || '— none set —';
+  if (document.activeElement !== $('#codeinput')) $('#codeinput').value = activeCode;
+}
+function fillCodeSelect(sel, opts){
+  const cur = sel.value;
+  sel.innerHTML = '';
+  for (const o of opts) { const op = document.createElement('option'); op.value = o.v; op.textContent = o.t; sel.appendChild(op); }
+  if (opts.some(o => o.v === cur)) sel.value = cur;
+}
+function refreshCodeSelects(){
+  const codes = allCodes();
+  if (peopleFilter !== 'ALL' && !codes.includes(peopleFilter)) peopleFilter = 'ALL';
+  if (combinedFilter !== 'ALL' && !codes.includes(combinedFilter)) combinedFilter = 'ALL';
+  const filterOpts = [{ v:'ALL', t:'All collections' }].concat(codes.map(c => ({ v:c, t:codeLabel(c) + ' (' + entries.filter(e => entryCode(e) === c).length + ')' })));
+  fillCodeSelect($('#peoplefilter'), filterOpts); $('#peoplefilter').value = peopleFilter;
+  fillCodeSelect($('#combinedfilter'), filterOpts); $('#combinedfilter').value = combinedFilter;
+  const cmpOpts = codes.map(c => ({ v:c, t:codeLabel(c) }));
+  fillCodeSelect($('#compareA'), cmpOpts); fillCodeSelect($('#compareB'), cmpOpts);
+  if (!cmpOpts.some(o => o.v === compareA)) compareA = cmpOpts.length ? cmpOpts[0].v : '';
+  if (!cmpOpts.some(o => o.v === compareB) || compareB === compareA) {
+    const alt = cmpOpts.map(o => o.v).filter(v => v !== compareA);
+    compareB = alt.length ? alt[alt.length - 1] : compareA;
+  }
+  $('#compareA').value = compareA; $('#compareB').value = compareB;
+  fillCodeSelect($('#exportcode'), cmpOpts);
+  $('#comparewrap').style.display = codes.length >= 2 ? '' : 'none';
+}
 
 function freshDraft(){ return { name:'', own:null, serve:null, chips:{} }; }
 function load(){ try { return JSON.parse(localStorage.getItem(LS_KEY)) || []; } catch(e){ return []; } }
@@ -278,6 +392,16 @@ function renderGrid(){
 }
 
 $('#pname').addEventListener('input', e => { draft.name = e.target.value; });
+$('#setcode').addEventListener('click', () => {
+  const v = normalizeCode($('#codeinput').value);
+  if (!v) { toast('Type a code first — letters and numbers'); return; }
+  setActive(v); toast('Collection code set: ' + v);
+});
+$('#gencode').addEventListener('click', () => { const c = genCode(); $('#codeinput').value = c; setActive(c); toast('Your gathering code: ' + c + ' — share it with everyone entering cards'); });
+$('#peoplefilter').addEventListener('change', e => { peopleFilter = e.target.value; renderPeople(); });
+$('#combinedfilter').addEventListener('change', e => { combinedFilter = e.target.value; renderCombined(); });
+$('#compareA').addEventListener('change', e => { compareA = e.target.value; renderCombined(); });
+$('#compareB').addEventListener('change', e => { compareB = e.target.value; renderCombined(); });
 $('#clearbtn').addEventListener('click', () => { draft = freshDraft(); editingId = null; syncForm(); toast('Board cleared'); });
 $('#cancelEdit').addEventListener('click', () => { draft = freshDraft(); editingId = null; syncForm(); });
 
@@ -289,7 +413,7 @@ $('#savebtn').addEventListener('click', () => {
     if (i >= 0) entries[i] = Object.assign({}, entries[i], JSON.parse(JSON.stringify(draft)));
     toast('Scorecard updated');
   } else {
-    entries.push(Object.assign({ id: uid(), ts: Date.now() }, JSON.parse(JSON.stringify(draft))));
+    entries.push(Object.assign({ id: uid(), ts: Date.now(), code: activeCode }, JSON.parse(JSON.stringify(draft))));
     toast('Scorecard saved — ' + entries.length + ' gathered');
   }
   persist(); draft = freshDraft(); editingId = null; syncForm(); updatePcount(); showTab('people');
@@ -300,19 +424,24 @@ function syncForm(){
   $('#formtitle').textContent = editingId ? 'Editing a scorecard' : "A person's scorecard";
   $('#savebtn').textContent = editingId ? 'Save the changes' : 'Save this scorecard';
   $('#cancelEdit').style.display = editingId ? '' : 'none';
+  const en = $('#editnote');
+  if (editingId) { const orig = entries.find(e => e.id === editingId); en.innerHTML = orig ? 'This card belongs to collection <span class="codechip">' + codeLabel(entryCode(orig)) + '</span> — editing keeps it there.' : ''; }
+  else en.textContent = activeCode ? '' : 'Tip: set a code before a gathering so its cards stay sorted from everyone else\u2019s.';
   renderPicks(); renderGrid();
 }
 
 /* ---------- people ---------- */
 function markedCount(e){ let n = 0; for (const k in e.chips) for (const p in e.chips[k]) n++; return n; }
 function renderPeople(){
-  updatePcount();
+  updatePcount(); refreshCodeSelects();
+  const shown = entriesFor(peopleFilter);
   const list = $('#peoplelist'); list.innerHTML = '';
-  $('#peopleEmpty').style.display = entries.length ? 'none' : '';
-  for (const e of entries.slice().reverse()) {
+  $('#peopleEmpty').style.display = shown.length ? 'none' : '';
+  $('#peopleEmpty').textContent = entries.length ? 'No scorecards in this collection.' : 'No scorecards yet. Add the first one in the Enter tab.';
+  for (const e of shown.slice().reverse()) {
     const d = document.createElement('div'); d.className = 'person';
     const when = new Date(e.ts).toLocaleDateString(undefined, { month:'short', day:'numeric' });
-    d.innerHTML = '<div class="pn">' + (e.name ? escapeHtml(e.name) : 'Anonymous') + '</div>' +
+    d.innerHTML = '<div class="pn">' + (e.name ? escapeHtml(e.name) : 'Anonymous') + ' <span class="codechip">' + codeLabel(entryCode(e)) + '</span></div>' +
       '<div class="pm">Household: <b>' + rowName(e.own) + '</b>' +
       (e.serve ? ' · Serves: <b>' + rowName(e.serve) + '</b>' : '') +
       ' · ' + markedCount(e) + '/40 chips · ' + when + '</div>';
@@ -397,11 +526,11 @@ function renderTalk(agg, ownCount){
 }
 
 /* ---------- combined ---------- */
-function aggregate(){
+function aggregate(list){
   const agg = {}; // agg[rowKey][phase] = {F,G,S}
   for (const r of ROWS) { agg[r.key] = {}; for (const p of PHASES) agg[r.key][p] = { F:0, G:0, S:0 }; }
   const ownCount = {}, serveCount = {}, tot = { F:0, G:0, S:0 };
-  for (const e of entries) {
+  for (const e of list) {
     if (e.own) ownCount[e.own] = (ownCount[e.own] || 0) + 1;
     if (e.serve) serveCount[e.serve] = (serveCount[e.serve] || 0) + 1;
     for (const k in e.chips) for (const p in e.chips[k]) { const v = e.chips[k][p]; if (agg[k] && agg[k][p] && CHIPNAME[v]) { agg[k][p][v]++; tot[v]++; } }
@@ -409,10 +538,13 @@ function aggregate(){
   return { agg, ownCount, serveCount, tot };
 }
 function renderCombined(){
-  const { agg, ownCount, serveCount, tot } = aggregate();
-  $('#respondents').innerHTML = entries.length === 0
+  refreshCodeSelects();
+  const shown = entriesFor(combinedFilter);
+  const { agg, ownCount, serveCount, tot } = aggregate(shown);
+  const scope = combinedFilter === 'ALL' ? '' : ' in <b>' + codeLabel(combinedFilter) + '</b>';
+  $('#respondents').innerHTML = shown.length === 0
     ? 'No scorecards gathered yet — the picture fills in as people are entered.'
-    : '<b>' + entries.length + '</b> scorecard' + (entries.length === 1 ? '' : 's') + ' gathered.';
+    : '<b>' + shown.length + '</b> scorecard' + (shown.length === 1 ? '' : 's') + ' gathered' + scope + '.';
   const totalChips = tot.F + tot.G + tot.S;
   if (totalChips) {
     $('#overallbar').innerHTML = '<div class="bar">' +
@@ -482,6 +614,34 @@ function renderCombined(){
       (best ? '<div class="stat">Strongest thread: <b>' + best.r.name + ' — ' + best.p + '</b> (' + best.n + ' marks, mostly Faithful).</div>' : '') +
       (worst && worst !== best ? '<div class="stat">Most scattered thread: <b>' + worst.r.name + ' — ' + worst.p + '</b> (' + worst.n + ' marks). Start the conversation there.</div>' : '');
   }
+  renderCompare();
+}
+
+/* ---------- compare two gatherings ---------- */
+function cellScore(c){ const n = c.F + c.G + c.S; return n ? (c.F - c.S) / n : null; }
+function renderCompare(){
+  const wrap = $('#comparewrap');
+  if (allCodes().length < 2 || !compareA || !compareB || compareA === compareB) {
+    if (compareA && compareA === compareB) $('#compareresult').innerHTML = '<div class="small">Pick two different collections to compare.</div>';
+    return;
+  }
+  const A = aggregate(entriesFor(compareA)), B = aggregate(entriesFor(compareB));
+  const nA = entriesFor(compareA).length, nB = entriesFor(compareB).length;
+  const pct = t => { const n = t.F + t.G + t.S; return n ? Math.round(100 * t.F / n) + '% Faithful · ' + Math.round(100 * t.G / n) + '% Growing · ' + Math.round(100 * t.S / n) + '% Scattered' : 'no chips'; };
+  let html = '<div class="stat"><b>' + codeLabel(compareA) + '</b> — ' + nA + ' cards: ' + pct(A.tot) + '</div>' +
+             '<div class="stat"><b>' + codeLabel(compareB) + '</b> — ' + nB + ' cards: ' + pct(B.tot) + '</div>';
+  const moves = [];
+  for (const r of ROWS) for (const p of PHASES) {
+    const a = cellScore(A.agg[r.key][p]), b = cellScore(B.agg[r.key][p]);
+    if (a === null || b === null) continue;
+    moves.push({ r, p, d: b - a });
+  }
+  moves.sort((x, y) => y.d - x.d);
+  const up = moves.filter(m => m.d > 0.05).slice(0, 3), down = moves.filter(m => m.d < -0.05).slice(-3).reverse();
+  if (up.length) html += '<h3>Moved up</h3>' + up.map(m => '<div class="stat">↑ <b>' + m.r.name + ' — ' + m.p + '</b></div>').join('');
+  if (down.length) html += '<h3>Slipped back</h3>' + down.map(m => '<div class="stat">↓ <b>' + m.r.name + ' — ' + m.p + '</b></div>').join('');
+  if (!up.length && !down.length) html += '<div class="small">No thread moved much between these two gatherings.</div>';
+  $('#compareresult').innerHTML = html;
 }
 
 /* ---------- share ---------- */
@@ -492,12 +652,19 @@ function download(name, text, type){
 }
 $('#expjson').addEventListener('click', () => { download('cornerstone-collection.json', JSON.stringify({ app:'cornerstone-scorecard', version:1, entries }, null, 2), 'application/json'); toast('Collection downloaded'); });
 $('#expcsv').addEventListener('click', () => {
-  const head = ['Name','Household','Serves'].concat(ROWS.flatMap(r => PHASES.map(p => r.name + ' — ' + p)));
+  const head = ['Name','Household','Serves','Collection'].concat(ROWS.flatMap(r => PHASES.map(p => r.name + ' — ' + p)));
   const q = v => '"' + String(v == null ? '' : v).replace(/"/g, '""') + '"';
   const lines = [head.map(q).join(',')];
-  for (const e of entries) lines.push([e.name || '', rowName(e.own), e.serve ? rowName(e.serve) : '']
+  for (const e of entries) lines.push([e.name || '', rowName(e.own), e.serve ? rowName(e.serve) : '', codeLabel(entryCode(e))]
     .concat(ROWS.flatMap(r => PHASES.map(p => { const v = (e.chips[r.key] || {})[p]; return v ? CHIPNAME[v] : ''; }))).map(q).join(','));
   download('cornerstone-collection.csv', lines.join('\n'), 'text/csv'); toast('Spreadsheet downloaded');
+});
+$('#exponecode').addEventListener('click', () => {
+  const c = $('#exportcode').value;
+  const subset = entriesFor(c);
+  if (!subset.length) { toast('That collection is empty'); return; }
+  download('cornerstone-' + (c || 'no-code') + '.json', JSON.stringify({ app:'cornerstone-scorecard', version:1, code:c, entries: subset }, null, 2), 'application/json');
+  toast('Collection ' + codeLabel(c) + ' downloaded');
 });
 $('#impfile').addEventListener('change', ev => {
   const f = ev.target.files[0]; if (!f) return;
@@ -516,7 +683,7 @@ $('#impfile').addEventListener('change', ev => {
   rd.readAsText(f);
 });
 $('#copysummary').addEventListener('click', async () => {
-  const { tot } = aggregate(); const n = tot.F + tot.G + tot.S;
+  const { tot } = aggregate(entries); const n = tot.F + tot.G + tot.S;
   const txt = 'Cornerstone Scorecard — ' + entries.length + ' scorecards gathered. ' +
     (n ? 'Overall: ' + Math.round(100*tot.F/n) + '% Faithful, ' + Math.round(100*tot.G/n) + '% Growing, ' + Math.round(100*tot.S/n) + '% Scattered.' : 'No chips placed yet.');
   try { await navigator.clipboard.writeText(txt); toast('Summary copied'); } catch(e) { prompt('Copy this summary:', txt); }
@@ -530,7 +697,8 @@ $('#eraseall').addEventListener('click', () => {
 });
 
 /* ---------- init ---------- */
-syncForm(); updatePcount();
+renderCodeCard();
+syncForm(); updatePcount(); refreshCodeSelects();
 </script>
 </body>
 </html>

@@ -34,8 +34,19 @@ It works in any phone or computer browser — no account, no sign-up, nothing to
 
 The four stages of every connection: **Called → Known → Knit → Sent.**
 
+## Collection codes — many groups, one tool
+
+Every scorecard is stamped with a **collection code**, so gatherings stay sorted when several groups use the tool over time.
+
+- Before a gathering, set a code in the app (type your own, like `IMMANUEL-OCT26`, or tap **Generate one**). Everyone entering cards at that gathering uses the **same code on every phone** — the code travels inside every exported file.
+- **People** and **Combined** can be filtered to a single collection, or show everything at once.
+- With two or more collections on a device, **Combined → Compare two gatherings** shows how the picture changed: overall Faithful / Growing / Scattered, and which threads moved up or slipped back.
+- A coordinator can hand off or receive **one collection at a time** (Share tab → "Download this collection only"), so churches keep their own data and share only what they mean to.
+
 ## About
 
 A biblical edition of the Ecosystem Edge® Scorecard idea, reworked for churches by Zachary Furr. The printable paper scorecard lives alongside it in the author's Drive.
+
+**Contact:** inconstantsnap@gmail.com · **Support:** the tool is free and stays free — if it blessed your church, gifts via Cash App **$forgotu** are appreciated.
 
 *"The stone the builders rejected has become the cornerstone." — Psalm 118:22*
