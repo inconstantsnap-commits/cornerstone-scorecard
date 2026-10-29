@@ -4,11 +4,20 @@
 
 ## Use it
 
-📱 **Open the app:** https://inconstantsnap-commits.github.io/cornerstone-scorecard/
+📱 **Open the app:** https://inconstantsnap-commits.github.io/cornerstone-scorecard/ — that page asks one question: which copy is yours?
 
 It works in any phone or computer browser — no account, no sign-up, nothing to install.
 
-⬇ **Or download it:** save `index.html` from this repo to your device and open it. The whole tool is that one file, and it works offline. (Tip: export a JSON backup now and then — your collection lives on your device.)
+⬇ **Or download a copy:** save `pastor.html` or `congregation.html` from this repo to your device and open it. Each copy is one single file, and it works offline. (Tip: export a JSON backup now and then — your collection lives on your device.)
+
+## Two copies: pastor & congregation
+
+The tool comes in two copies, so the congregation is not overburdened with the data and the stats:
+
+- **Pastor copy** (`pastor.html`) — the full picture. Everything: all scorecards, the combined wheel and grid **with** percentages and counts, Talk it through with the room's numbers, comparing two gatherings, collection filters, JSON/CSV export and import, printing, and erasing.
+- **Congregation copy** (`congregation.html`) — just your card. Enter your own scorecard, see your cards on the device, and view the combined picture in plain words: the wheel and the coloured grid (no percentages, no counts underneath), where we are strongest, where we need each other most, and the two Talk-it-through questions. One simple button hands your scorecards to your pastor as a file — nothing else to manage.
+
+On the same device the two copies share one collection, so cards entered in the congregation copy appear in the pastor copy automatically.
 
 ## How it works
 
