@@ -128,21 +128,24 @@
       <label class="flabel" for="pname">Name (optional)</label>
       <input type="text" id="pname" placeholder="Leave blank to stay anonymous" autocomplete="off">
 
-      <label class="flabel">1 · Circle the household you belong to</label>
+      <label class="flabel">1 · Which household are you in?</label>
+      <div class="small">Pick the one that fits you best. The line under each name says who it is.</div>
       <div id="pick-own"></div>
 
-      <label class="flabel">2 · Star the household your body exists to serve</label>
+      <label class="flabel">2 · Which household do you serve?</label>
+      <div class="small">Star the one your group mainly helps or works for.</div>
       <div id="pick-serve"></div>
     </div>
 
     <div class="card">
       <h2>3 · Place a chip in each circle</h2>
       <div class="legend">
-        <span><span class="dot f"></span>Faithful</span>
-        <span><span class="dot g"></span>Growing</span>
-        <span><span class="dot s"></span>Scattered</span>
-        <span class="small">Tap a circle to change the chip. Tap again to clear it.</span>
+        <span><span class="dot f"></span>Connected (Faithful)</span>
+        <span><span class="dot g"></span>Needs Help (Growing)</span>
+        <span><span class="dot s"></span>Disconnected (Scattered)</span>
       </div>
+      <div class="small">For each household, say how connected you are to them. Tap a circle: 1st tap = Connected, 2nd = Needs Help, 3rd = Disconnected, 4th clears it.</div>
+      <div class="small" style="margin-top:4px;"><b>Stages:</b> Called = starting out · Known = know each other · Knit = work together · Sent = go out together</div>
       <div class="gridrow" style="border-bottom:1px solid var(--line);">
         <div></div><div class="ph">Called</div><div class="ph">Known</div><div class="ph">Knit</div><div class="ph">Sent</div>
       </div>
@@ -182,7 +185,7 @@
       <div class="small">The whole picture as one wheel: every household a slice, every stage a ring — Called at the heart, Sent at the rim. A hatched slice means the room is split on it.</div>
       <div class="wheelwrap" id="wheelwrap"></div>
       <h3>Every connection</h3>
-      <div class="small" id="griddesc">Each circle shows how everyone marked it: the ring fills with the colours of the room, and the counts underneath read Faithful · Growing · Scattered. A dotted ring means the room is split on that circle. Tap any circle to talk it through.</div>
+      <div class="small" id="griddesc">Each circle shows how everyone marked it: the ring fills with the colours of the room, and the counts underneath read Connected · Needs Help · Disconnected. A dotted ring means the room is split on that circle. Tap any circle to talk it through.</div>
       <div class="board" id="aggboard" style="margin-top:10px;"></div>
       <h3>Talk it through</h3>
       <div class="pills" id="householdpills"></div>
@@ -231,7 +234,7 @@
       <h2>How a church uses this</h2>
       <p class="stat">1. Hand out the paper Cornerstone Scorecard, or pass one phone around the room.</p>
       <p class="stat">2. Enter each person's card here — their household, the household they serve, and their forty chips.</p>
-      <p class="stat">3. Open <b>Combined</b> and read the picture together: where the Body is faithful, where it is growing, and where it is scattered.</p>
+      <p class="stat">3. Open <b>Combined</b> and read the picture together: where the Body is connected, where it needs help, and where it is disconnected.</p>
       <p class="stat">4. Meeting in several rooms? Each room keeps its own collection, then one person imports them all into one device for the whole-church picture.</p>
     </div>
   </section>
@@ -246,7 +249,7 @@
     </div>
     <div class="card">
       <h2>Thank you</h2>
-      <p class="stat">Thank you for using this tool. If it helped your church see itself more honestly — where the Body is faithful, where it is growing, and where it is scattered — then it did the job it was built for. May the threads that are weak today be the strongest ones at your next gathering.</p>
+      <p class="stat">Thank you for using this tool. If it helped your church see itself more honestly — where the Body is connected, where it needs help, and where it is disconnected — then it did the job it was built for. May the threads that are weak today be the strongest ones at your next gathering.</p>
       <h3>Keep it free for the next church</h3>
       <p class="stat">This tool is free, and it will stay free. If it blessed your church and you'd like to help it reach others, a gift of any size is welcome:</p>
       <p class="stat" style="font-size:20px;">💚 Cash App: <b>$forgotu</b></p>
@@ -260,19 +263,20 @@
 <div class="toast" id="toast"></div>
 <script>
 const ROWS = [
-  { key:'tentmakers', letter:'T', color:'#c64b5e', name:'Tentmakers',            ref:'Entrepreneurs — making and starting' },
-  { key:'households', letter:'H', color:'#5ba3b8', name:'Great Households',      ref:'Corporates — houses whose doors open doors' },
-  { key:'rulers',     letter:'R', color:'#4a6fa5', name:'Rulers & Magistrates',  ref:'Government — set over the people' },
-  { key:'scribes',    letter:'S', color:'#d9a821', name:'Scribes & Psalmists',   ref:'Storytellers — keep the record, sing the story' },
-  { key:'young',      letter:'Y', color:'#7fae5a', name:'The Young',             ref:'Youth + Talent — called early' },
-  { key:'deacons',    letter:'D', color:'#7d5ba6', name:'Deacons',               ref:'Service Providers — appointed to serve' },
-  { key:'guilds',     letter:'G', color:'#c96f4a', name:'Guilds & Craftsmen',    ref:'Trade + Industry — filled with skill' },
-  { key:'assemblies', letter:'A', color:'#4a90b8', name:'Assemblies & Churches', ref:'Ecosystem Support — host, send, hold together' },
-  { key:'talents',    letter:'★', color:'#b8860b', name:'Talents & Tithes',      ref:'Money — the widow\u2019s mite outweighs the treasury' },
-  { key:'god',        letter:'G', color:'#22334d', name:'God',                   ref:'Governance — who holds the thread? The Chief Cornerstone' },
+  { key:'tentmakers', letter:'T', color:'#c64b5e', name:'Tentmakers',            ref:'Entrepreneurs — people who start or run a business', short:'Business starters' },
+  { key:'households', letter:'H', color:'#5ba3b8', name:'Great Households',      ref:'Corporates — big companies and employers', short:'Big companies' },
+  { key:'rulers',     letter:'R', color:'#4a6fa5', name:'Rulers & Magistrates',  ref:'Government — officials and public leaders', short:'Government' },
+  { key:'scribes',    letter:'S', color:'#d9a821', name:'Scribes & Psalmists',   ref:'Storytellers — writers, artists, and musicians', short:'Storytellers' },
+  { key:'young',      letter:'Y', color:'#7fae5a', name:'The Young',             ref:'Youth — young people and new talent', short:'Youth' },
+  { key:'deacons',    letter:'D', color:'#7d5ba6', name:'Deacons',               ref:'Service providers — people who help and serve others', short:'Helpers who serve' },
+  { key:'guilds',     letter:'G', color:'#c96f4a', name:'Guilds & Craftsmen',    ref:'Trade & industry — skilled workers and makers', short:'Trades & makers' },
+  { key:'assemblies', letter:'A', color:'#4a90b8', name:'Assemblies & Churches', ref:'Support — churches and groups that hold others up', short:'Churches & support' },
+  { key:'talents',    letter:'★', color:'#b8860b', name:'Talents & Tithes',      ref:'Money — givers and funders', short:'Money & giving' },
+  { key:'god',        letter:'G', color:'#22334d', name:'God',                   ref:'Governance — God, who holds it all together', short:'God over all' },
 ];
 const PHASES = ['Called','Known','Knit','Sent'];
-const CHIPNAME = { F:'Faithful', G:'Growing', S:'Scattered' };
+const CHIPNAME = { F:'Connected', G:'Needs Help', S:'Disconnected' };
+const CHIPFULL = { F:'Connected (Faithful)', G:'Needs Help (Growing)', S:'Disconnected (Scattered)' };
 const CHIPCOLOR = { F:'#2e7d5b', G:'#d9a821', S:'#b3402e' };
 const LS_KEY = 'cornerstone-entries-v1';
 const $ = s => document.querySelector(s);
@@ -375,13 +379,13 @@ function renderGrid(){
   let marked = 0;
   for (const r of ROWS) {
     const row = document.createElement('div'); row.className = 'gridrow';
-    row.innerHTML = '<div><div class="gn">' + r.name + '</div><div class="gr">' + r.ref + '</div></div>';
+    row.innerHTML = '<div><div class="gn">' + r.name + '</div><div class="gr">' + (r.short || r.ref) + '</div></div>';
     for (const p of PHASES) {
       const v = (draft.chips[r.key] || {})[p] || '';
       if (v) marked++;
       const c = document.createElement('div');
       c.className = 'cell ' + v; c.textContent = v;
-      c.title = r.name + ' — ' + p + (v ? ': ' + CHIPNAME[v] : '');
+      c.title = r.name + ' — ' + p + (v ? ': ' + CHIPFULL[v] : '');
       c.addEventListener('click', () => {
         draft.chips[r.key] = draft.chips[r.key] || {};
         const cur = draft.chips[r.key][p] || '';
@@ -520,13 +524,13 @@ function renderTalk(agg, ownCount){
     const said = ['F','G','S'].filter(v => c[v] > 0).sort((a,b) => c[b] - c[a])
       .map(v => '<b>' + c[v] + '</b> of you see this connection as <b>' + CHIPNAME[v] + '</b>');
     if (CS_MODE !== 'congregation') html += '<div class="stat">At <b>' + p + '</b>: ' + said.join('; ') + '.</div>';
-    if (c.G && (!bestPhase || c.G > agg[r.key][bestPhase].G)) { bestPhase = p; bestFrom = 'Growing'; }
-    if (!bestPhase && c.S) { bestPhase = p; bestFrom = 'Scattered'; }
+    if (c.G && (!bestPhase || c.G > agg[r.key][bestPhase].G)) { bestPhase = p; bestFrom = 'Needs Help'; }
+    if (!bestPhase && c.S) { bestPhase = p; bestFrom = 'Disconnected'; }
   }
   if (!any) { panel.innerHTML = html + '<div class="small">No chips placed for this household yet.</div>'; return; }
   html += '<div class="talkbox"><div class="ask">Talk it through</div><div class="stat">What does each side know that the other doesn\u2019t?</div></div>';
   if (bestPhase) {
-    const to = bestFrom === 'Growing' ? 'Faithful' : 'Growing';
+    const to = bestFrom === 'Needs Help' ? 'Connected' : 'Needs Help';
     html += '<div class="talkbox"><div class="ask">Then ask</div><div class="stat">Who in this room could move one <b>' + bestPhase + '</b> rating from <b>' + bestFrom + '</b> to <b>' + to + '</b> in the next 90 days?</div></div>';
   }
   panel.innerHTML = html;
@@ -561,9 +565,9 @@ function renderCombined(){
       '<div style="background:' + CHIPCOLOR.G + ';width:' + (100*tot.G/totalChips) + '%"></div>' +
       '<div style="background:' + CHIPCOLOR.S + ';width:' + (100*tot.S/totalChips) + '%"></div></div>';
     $('#overalllegend').innerHTML =
-      '<span><span class="dot f"></span>Faithful ' + Math.round(100*tot.F/totalChips) + '%</span>' +
-      '<span><span class="dot g"></span>Growing ' + Math.round(100*tot.G/totalChips) + '%</span>' +
-      '<span><span class="dot s"></span>Scattered ' + Math.round(100*tot.S/totalChips) + '%</span>';
+      '<span><span class="dot f"></span>Connected (Faithful) ' + Math.round(100*tot.F/totalChips) + '%</span>' +
+      '<span><span class="dot g"></span>Needs Help (Growing) ' + Math.round(100*tot.G/totalChips) + '%</span>' +
+      '<span><span class="dot s"></span>Disconnected (Scattered) ' + Math.round(100*tot.S/totalChips) + '%</span>';
   } else { $('#overallbar').innerHTML = ''; $('#overalllegend').innerHTML = ''; }
 
   if (!talkHousehold || !ROWS.some(r => r.key === talkHousehold)) {
@@ -610,7 +614,7 @@ function renderCombined(){
     : '<div class="small">No stars placed yet.</div>';
 
   const co = $('#callouts');
-  if (!totalChips) { co.innerHTML = '<div class="small">Once chips are in, this names the strongest and most scattered connections.</div>'; }
+  if (!totalChips) { co.innerHTML = '<div class="small">Once chips are in, this names the strongest and most disconnected connections.</div>'; }
   else {
     let best = null, worst = null;
     for (const r of ROWS) for (const p of PHASES) {
@@ -622,8 +626,8 @@ function renderCombined(){
     co.innerHTML = CS_MODE === 'congregation'
       ? (best ? '<div class="stat">Where we are strongest: <b>' + best.r.name + ' — ' + best.p + '</b>.</div>' : '') +
         (worst && worst !== best ? '<div class="stat">Where we need each other most: <b>' + worst.r.name + ' — ' + worst.p + '</b>. Start the conversation there.</div>' : '')
-      : (best ? '<div class="stat">Strongest thread: <b>' + best.r.name + ' — ' + best.p + '</b> (' + best.n + ' marks, mostly Faithful).</div>' : '') +
-        (worst && worst !== best ? '<div class="stat">Most scattered thread: <b>' + worst.r.name + ' — ' + worst.p + '</b> (' + worst.n + ' marks). Start the conversation there.</div>' : '');
+      : (best ? '<div class="stat">Strongest thread: <b>' + best.r.name + ' — ' + best.p + '</b> (' + best.n + ' marks, mostly Connected).</div>' : '') +
+        (worst && worst !== best ? '<div class="stat">Most disconnected thread: <b>' + worst.r.name + ' — ' + worst.p + '</b> (' + worst.n + ' marks). Start the conversation there.</div>' : '');
   }
   renderCompare();
 }
@@ -638,7 +642,7 @@ function renderCompare(){
   }
   const A = aggregate(entriesFor(compareA)), B = aggregate(entriesFor(compareB));
   const nA = entriesFor(compareA).length, nB = entriesFor(compareB).length;
-  const pct = t => { const n = t.F + t.G + t.S; return n ? Math.round(100 * t.F / n) + '% Faithful · ' + Math.round(100 * t.G / n) + '% Growing · ' + Math.round(100 * t.S / n) + '% Scattered' : 'no chips'; };
+  const pct = t => { const n = t.F + t.G + t.S; return n ? Math.round(100 * t.F / n) + '% Connected · ' + Math.round(100 * t.G / n) + '% Needs Help · ' + Math.round(100 * t.S / n) + '% Disconnected' : 'no chips'; };
   let html = '<div class="stat"><b>' + codeLabel(compareA) + '</b> — ' + nA + ' cards: ' + pct(A.tot) + '</div>' +
              '<div class="stat"><b>' + codeLabel(compareB) + '</b> — ' + nB + ' cards: ' + pct(B.tot) + '</div>';
   const moves = [];
@@ -696,7 +700,7 @@ $('#impfile').addEventListener('change', ev => {
 $('#copysummary').addEventListener('click', async () => {
   const { tot } = aggregate(entries); const n = tot.F + tot.G + tot.S;
   const txt = 'Cornerstone Scorecard — ' + entries.length + ' scorecards gathered. ' +
-    (n ? 'Overall: ' + Math.round(100*tot.F/n) + '% Faithful, ' + Math.round(100*tot.G/n) + '% Growing, ' + Math.round(100*tot.S/n) + '% Scattered.' : 'No chips placed yet.');
+    (n ? 'Overall: ' + Math.round(100*tot.F/n) + '% Connected, ' + Math.round(100*tot.G/n) + '% Needs Help, ' + Math.round(100*tot.S/n) + '% Disconnected.' : 'No chips placed yet.');
   try { await navigator.clipboard.writeText(txt); toast('Summary copied'); } catch(e) { prompt('Copy this summary:', txt); }
 });
 $('#printcombined').addEventListener('click', () => { showTab('combined'); setTimeout(() => window.print(), 150); });
