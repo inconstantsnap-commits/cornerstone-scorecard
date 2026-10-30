@@ -21,7 +21,7 @@ On the same device the two copies share one collection, so cards entered in the 
 
 ## How it works
 
-1. Each person fills in the Cornerstone Scorecard: the household they belong to, the household their body exists to serve (the star), and a chip — **Connected (Faithful)**, **Needs Help (Growing)**, or **Disconnected (Scattered)** — for every connection on the board.
+1. Each person fills in the Cornerstone Scorecard: the household they belong to, the household their body exists to serve (the star), and a chip — **Connected**, **Needs Help**, or **Disconnected** — for every connection on the board.
 2. Enter each person's card into the tool (or pass one phone around the room).
 3. Open **Combined** to see the whole church on one picture: a wheel of every connection, a grid of circles (a dotted ring means the room is split on that circle), and a **Talk it through** panel — pick any household to see how the room marked it and get the two questions that start the conversation: *What does each side know that the other doesn't?* and *Who could move one rating in the next 90 days?*
 4. Several rooms or several churches? Each keeps its own collection, then one person imports them all into a single device for the full picture (**Share** tab: JSON export/import; CSV for spreadsheets).

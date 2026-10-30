@@ -140,9 +140,9 @@
     <div class="card">
       <h2>3 · Place a chip in each circle</h2>
       <div class="legend">
-        <span><span class="dot f"></span>Connected (Faithful)</span>
-        <span><span class="dot g"></span>Needs Help (Growing)</span>
-        <span><span class="dot s"></span>Disconnected (Scattered)</span>
+        <span><span class="dot f"></span>Connected</span>
+        <span><span class="dot g"></span>Needs Help</span>
+        <span><span class="dot s"></span>Disconnected</span>
       </div>
       <div class="small">For each household, say how connected you are to them. Tap a circle: 1st tap = Connected, 2nd = Needs Help, 3rd = Disconnected, 4th clears it.</div>
       <div class="small" style="margin-top:4px;"><b>Stages:</b> Called = starting out · Known = know each other · Knit = work together · Sent = go out together</div>
@@ -276,7 +276,6 @@ const ROWS = [
 ];
 const PHASES = ['Called','Known','Knit','Sent'];
 const CHIPNAME = { F:'Connected', G:'Needs Help', S:'Disconnected' };
-const CHIPFULL = { F:'Connected (Faithful)', G:'Needs Help (Growing)', S:'Disconnected (Scattered)' };
 const CHIPCOLOR = { F:'#2e7d5b', G:'#d9a821', S:'#b3402e' };
 const LS_KEY = 'cornerstone-entries-v1';
 const $ = s => document.querySelector(s);
@@ -385,7 +384,7 @@ function renderGrid(){
       if (v) marked++;
       const c = document.createElement('div');
       c.className = 'cell ' + v; c.textContent = v;
-      c.title = r.name + ' — ' + p + (v ? ': ' + CHIPFULL[v] : '');
+      c.title = r.name + ' — ' + p + (v ? ': ' + CHIPNAME[v] : '');
       c.addEventListener('click', () => {
         draft.chips[r.key] = draft.chips[r.key] || {};
         const cur = draft.chips[r.key][p] || '';
@@ -565,9 +564,9 @@ function renderCombined(){
       '<div style="background:' + CHIPCOLOR.G + ';width:' + (100*tot.G/totalChips) + '%"></div>' +
       '<div style="background:' + CHIPCOLOR.S + ';width:' + (100*tot.S/totalChips) + '%"></div></div>';
     $('#overalllegend').innerHTML =
-      '<span><span class="dot f"></span>Connected (Faithful) ' + Math.round(100*tot.F/totalChips) + '%</span>' +
-      '<span><span class="dot g"></span>Needs Help (Growing) ' + Math.round(100*tot.G/totalChips) + '%</span>' +
-      '<span><span class="dot s"></span>Disconnected (Scattered) ' + Math.round(100*tot.S/totalChips) + '%</span>';
+      '<span><span class="dot f"></span>Connected ' + Math.round(100*tot.F/totalChips) + '%</span>' +
+      '<span><span class="dot g"></span>Needs Help ' + Math.round(100*tot.G/totalChips) + '%</span>' +
+      '<span><span class="dot s"></span>Disconnected ' + Math.round(100*tot.S/totalChips) + '%</span>';
   } else { $('#overallbar').innerHTML = ''; $('#overalllegend').innerHTML = ''; }
 
   if (!talkHousehold || !ROWS.some(r => r.key === talkHousehold)) {
