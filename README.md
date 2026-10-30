@@ -42,7 +42,14 @@ The rows are the fruit of the Spirit (Galatians 5:22–23):
 | **Gentleness** | Strength under control — not harsh |
 | **Self-Control** | Ruling yourself — not ruled by urges |
 
-The four stages of every connection: **Called** (starting out) → **Known** (know each other) → **Knit** (work together) → **Sent** (go out together).
+The four stages of every connection (the columns, left to right):
+
+- **Called** — starting out: the connection begins, you know of each other
+- **Known** — you actually know each other: names, needs, real faces, not just a contact
+- **Knit** — tied together: you work together, and trust is there
+- **Sent** — going out together: the connection turns outward, on mission
+
+For each fruit, you mark how it stands at each stage.
 
 ## Collection codes — many groups, one tool
 
