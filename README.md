@@ -21,25 +21,26 @@ On the same device the two copies share one collection, so cards entered in the 
 
 ## How it works
 
-1. Each person fills in the Cornerstone Scorecard: the household they belong to, the household their body exists to serve (the star), and a chip — **Connected**, **Needs Help**, or **Disconnected** — for every connection on the board.
+1. Each person fills in the Cornerstone Scorecard: the fruit that marks them, the fruit they serve with (the star), and a chip — **Connected**, **Needs Help**, or **Disconnected** — for every fruit on the board.
 2. Enter each person's card into the tool (or pass one phone around the room).
-3. Open **Combined** to see the whole church on one picture: a wheel of every connection, a grid of circles (a dotted ring means the room is split on that circle), and a **Talk it through** panel — pick any household to see how the room marked it and get the two questions that start the conversation: *What does each side know that the other doesn't?* and *Who could move one rating in the next 90 days?*
+3. Open **Combined** to see the whole church on one picture: a wheel of every connection, a grid of circles (a dotted ring means the room is split on that circle), and a **Talk it through** panel — pick any fruit to see how the room marked it and get the two questions that start the conversation: *What does each side know that the other doesn't?* and *Who could move one rating in the next 90 days?*
 4. Several rooms or several churches? Each keeps its own collection, then one person imports them all into a single device for the full picture (**Share** tab: JSON export/import; CSV for spreadsheets).
 
-## The households
+## The fruits
+
+The rows are the fruit of the Spirit (Galatians 5:22–23):
 
 | | |
 |---|---|
-| **Tentmakers** | Entrepreneurs — people who start or run a business |
-| **Great Households** | Corporates — big companies and employers |
-| **Rulers & Magistrates** | Government — officials and public leaders |
-| **Scribes & Psalmists** | Storytellers — writers, artists, and musicians |
-| **The Young** | Youth — young people and new talent |
-| **Deacons** | Service providers — people who help and serve others |
-| **Guilds & Craftsmen** | Trade & industry — skilled workers and makers |
-| **Assemblies & Churches** | Support — churches and groups that hold others up |
-| **Talents & Tithes** | Money — givers and funders |
-| **God** | Governance — God, who holds it all together |
+| **Love** | Caring for others — putting them first |
+| **Joy** | Deep gladness — even when things are hard |
+| **Peace** | Calm and settled — not anxious, not at war |
+| **Patience** | Waiting and enduring — without giving up |
+| **Kindness** | Being good to others — care in action |
+| **Goodness** | Doing what is right — and doing it generously |
+| **Faithfulness** | Staying true — loyal, steady, keeps promises |
+| **Gentleness** | Strength under control — not harsh |
+| **Self-Control** | Ruling yourself — not ruled by urges |
 
 The four stages of every connection: **Called** (starting out) → **Known** (know each other) → **Knit** (work together) → **Sent** (go out together).
 

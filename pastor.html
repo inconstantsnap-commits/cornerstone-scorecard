@@ -110,6 +110,19 @@
   <!-- ENTER -->
   <section id="tab-enter" class="active">
     <div class="card">
+      <h2>The fruit of the Spirit</h2>
+      <div class="small">Galatians 5:22\u201323 \u2014 read these out before you start, so everyone knows what each fruit means.</div>
+      <p class="stat"><b>Love</b> \u2014 caring for others, putting them first</p>
+      <p class="stat"><b>Joy</b> \u2014 deep gladness, even when things are hard</p>
+      <p class="stat"><b>Peace</b> \u2014 calm and settled, not anxious, not at war</p>
+      <p class="stat"><b>Patience</b> \u2014 waiting and enduring, without giving up</p>
+      <p class="stat"><b>Kindness</b> \u2014 being good to others, care in action</p>
+      <p class="stat"><b>Goodness</b> \u2014 doing what is right, and doing it generously</p>
+      <p class="stat"><b>Faithfulness</b> \u2014 staying true: loyal, steady, keeps promises</p>
+      <p class="stat"><b>Gentleness</b> \u2014 strength under control, not harsh</p>
+      <p class="stat"><b>Self-Control</b> \u2014 ruling yourself, not ruled by urges</p>
+    </div>
+    <div class="card">
       <h2>Collection code</h2>
       <div class="small" id="codedesc">Every scorecard you save is stamped with the code below, so gatherings stay sorted — by church, group, or date. Everyone entering cards at the same gathering should use the same code, on every phone.</div>
       <div style="margin:10px 0 4px;">Current code:</div>
@@ -128,12 +141,12 @@
       <label class="flabel" for="pname">Name (optional)</label>
       <input type="text" id="pname" placeholder="Leave blank to stay anonymous" autocomplete="off">
 
-      <label class="flabel">1 · Which household are you in?</label>
-      <div class="small">Pick the one that fits you best. The line under each name says who it is.</div>
+      <label class="flabel">1 · Circle your fruit</label>
+      <div class="small">The fruit of the Spirit that marks you most \u2014 the one people see in you. The line under each name says what it means.</div>
       <div id="pick-own"></div>
 
-      <label class="flabel">2 · Which household do you serve?</label>
-      <div class="small">Star the one your group mainly helps or works for.</div>
+      <label class="flabel">2 · Star the fruit you serve with</label>
+      <div class="small">Star the fruit you mainly give to others.</div>
       <div id="pick-serve"></div>
     </div>
 
@@ -144,13 +157,13 @@
         <span><span class="dot g"></span>Needs Help</span>
         <span><span class="dot s"></span>Disconnected</span>
       </div>
-      <div class="small">For each household, say how connected you are to them. Tap a circle: 1st tap = Connected, 2nd = Needs Help, 3rd = Disconnected, 4th clears it.</div>
+      <div class="small">For each fruit, say how it stands at each stage. Tap a circle: 1st tap = Connected, 2nd = Needs Help, 3rd = Disconnected, 4th clears it.</div>
       <div class="small" style="margin-top:4px;"><b>Stages:</b> Called = starting out · Known = know each other · Knit = work together · Sent = go out together</div>
       <div class="gridrow" style="border-bottom:1px solid var(--line);">
         <div></div><div class="ph">Called</div><div class="ph">Known</div><div class="ph">Knit</div><div class="ph">Sent</div>
       </div>
       <div id="chipgrid"></div>
-      <div class="small" id="markedcount" style="margin-top:8px;">0 of 40 circles marked</div>
+      <div class="small" id="markedcount" style="margin-top:8px;">0 of 36 circles marked</div>
       <button class="bigbtn" id="savebtn">Save this scorecard</button>
       <button class="ghostbtn" id="clearbtn">Clear the board</button>
       <button class="ghostbtn" id="cancelEdit" style="display:none;">Cancel editing</button>
@@ -182,7 +195,7 @@
       <div id="overallbar" class="pastoronly"></div>
       <div class="legend pastoronly" id="overalllegend"></div>
       <h3>The wheel</h3>
-      <div class="small">The whole picture as one wheel: every household a slice, every stage a ring — Called at the heart, Sent at the rim. A hatched slice means the room is split on it.</div>
+      <div class="small">The whole picture as one wheel: every fruit a slice, every stage a ring — Called at the heart, Sent at the rim. A hatched slice means the room is split on it.</div>
       <div class="wheelwrap" id="wheelwrap"></div>
       <h3>Every connection</h3>
       <div class="small" id="griddesc">Each circle shows how everyone marked it: the ring fills with the colours of the room, and the counts underneath read Connected · Needs Help · Disconnected. A dotted ring means the room is split on that circle. Tap any circle to talk it through.</div>
@@ -192,7 +205,7 @@
       <div id="talkpanel"></div>
       <h3 class="pastoronly">Who answered</h3>
       <div id="householdcounts" class="pastoronly"></div>
-      <h3 class="pastoronly">Households most served (★)</h3>
+      <h3 class="pastoronly">Fruits most served (★)</h3>
       <div id="servecounts" class="pastoronly"></div>
       <h3>Reading the picture</h3>
       <div id="callouts"></div>
@@ -233,7 +246,7 @@
     <div class="card pastoronly">
       <h2>How a church uses this</h2>
       <p class="stat">1. Hand out the paper Cornerstone Scorecard, or pass one phone around the room.</p>
-      <p class="stat">2. Enter each person's card here — their household, the household they serve, and their forty chips.</p>
+      <p class="stat">2. Enter each person's card here — their fruit, the fruit they serve with, and their thirty-six chips.</p>
       <p class="stat">3. Open <b>Combined</b> and read the picture together: where the Body is connected, where it needs help, and where it is disconnected.</p>
       <p class="stat">4. Meeting in several rooms? Each room keeps its own collection, then one person imports them all into one device for the whole-church picture.</p>
     </div>
@@ -263,17 +276,17 @@
 <div class="toast" id="toast"></div>
 <script>
 const ROWS = [
-  { key:'tentmakers', letter:'T', color:'#c64b5e', name:'Tentmakers',            ref:'Entrepreneurs — people who start or run a business', short:'Business starters' },
-  { key:'households', letter:'H', color:'#5ba3b8', name:'Great Households',      ref:'Corporates — big companies and employers', short:'Big companies' },
-  { key:'rulers',     letter:'R', color:'#4a6fa5', name:'Rulers & Magistrates',  ref:'Government — officials and public leaders', short:'Government' },
-  { key:'scribes',    letter:'S', color:'#d9a821', name:'Scribes & Psalmists',   ref:'Storytellers — writers, artists, and musicians', short:'Storytellers' },
-  { key:'young',      letter:'Y', color:'#7fae5a', name:'The Young',             ref:'Youth — young people and new talent', short:'Youth' },
-  { key:'deacons',    letter:'D', color:'#7d5ba6', name:'Deacons',               ref:'Service providers — people who help and serve others', short:'Helpers who serve' },
-  { key:'guilds',     letter:'G', color:'#c96f4a', name:'Guilds & Craftsmen',    ref:'Trade & industry — skilled workers and makers', short:'Trades & makers' },
-  { key:'assemblies', letter:'A', color:'#4a90b8', name:'Assemblies & Churches', ref:'Support — churches and groups that hold others up', short:'Churches & support' },
-  { key:'talents',    letter:'★', color:'#b8860b', name:'Talents & Tithes',      ref:'Money — givers and funders', short:'Money & giving' },
-  { key:'god',        letter:'G', color:'#22334d', name:'God',                   ref:'Governance — God, who holds it all together', short:'God over all' },
+  { key:'love',         letter:'L', color:'#c64b5e', name:'Love',          ref:'Caring for others \u2014 putting them first', short:'Care for others' },
+  { key:'joy',          letter:'J', color:'#d9a821', name:'Joy',           ref:'Deep gladness \u2014 even when things are hard', short:'Deep gladness' },
+  { key:'peace',        letter:'P', color:'#5ba3b8', name:'Peace',         ref:'Calm and settled \u2014 not anxious, not at war', short:'Calm, settled' },
+  { key:'patience',     letter:'P', color:'#7fae5a', name:'Patience',      ref:'Waiting and enduring \u2014 without giving up', short:'Enduring, steady' },
+  { key:'kindness',     letter:'K', color:'#4a90b8', name:'Kindness',      ref:'Being good to others \u2014 care in action', short:'Good to others' },
+  { key:'goodness',     letter:'G', color:'#7d5ba6', name:'Goodness',      ref:'Doing what is right \u2014 and doing it generously', short:'Doing right' },
+  { key:'faithfulness', letter:'F', color:'#4a6fa5', name:'Faithfulness',  ref:'Staying true \u2014 loyal, steady, keeps promises', short:'Staying true' },
+  { key:'gentleness',   letter:'G', color:'#c96f4a', name:'Gentleness',    ref:'Strength under control \u2014 not harsh', short:'Not harsh' },
+  { key:'selfcontrol',  letter:'S', color:'#b8860b', name:'Self-Control',  ref:'Ruling yourself \u2014 not ruled by urges', short:'Rule yourself' },
 ];
+const LEGACY_NAMES = { tentmakers:'Tentmakers', households:'Great Households', rulers:'Rulers & Magistrates', scribes:'Scribes & Psalmists', young:'The Young', deacons:'Deacons', guilds:'Guilds & Craftsmen', assemblies:'Assemblies & Churches', talents:'Talents & Tithes', god:'God' };
 const PHASES = ['Called','Known','Knit','Sent'];
 const CHIPNAME = { F:'Connected', G:'Needs Help', S:'Disconnected' };
 const CHIPCOLOR = { F:'#2e7d5b', G:'#d9a821', S:'#b3402e' };
@@ -344,7 +357,7 @@ function load(){ try { return JSON.parse(localStorage.getItem(LS_KEY)) || []; } 
 function persist(){ localStorage.setItem(LS_KEY, JSON.stringify(entries)); }
 function uid(){ return Date.now().toString(36) + Math.random().toString(36).slice(2,8); }
 function toast(msg){ const t = $('#toast'); t.textContent = msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'), 2200); }
-function rowName(k){ const r = ROWS.find(r=>r.key===k); return r ? r.name : k; }
+function rowName(k){ const r = ROWS.find(r=>r.key===k); return r ? r.name : (LEGACY_NAMES[k] || k); }
 
 /* ---------- tabs ---------- */
 document.querySelectorAll('nav.tabs button').forEach(b => b.addEventListener('click', () => {
@@ -396,7 +409,7 @@ function renderGrid(){
     }
     grid.appendChild(row);
   }
-  $('#markedcount').textContent = marked + ' of 40 circles marked';
+  $('#markedcount').textContent = marked + ' of ' + (ROWS.length * PHASES.length) + ' circles marked';
 }
 
 $('#pname').addEventListener('input', e => { draft.name = e.target.value; });
@@ -414,7 +427,7 @@ $('#clearbtn').addEventListener('click', () => { draft = freshDraft(); editingId
 $('#cancelEdit').addEventListener('click', () => { draft = freshDraft(); editingId = null; syncForm(); });
 
 $('#savebtn').addEventListener('click', () => {
-  if (!draft.own) { toast('First pick the household they belong to'); showTab('enter'); window.scrollTo(0, 180); return; }
+  if (!draft.own) { toast('First circle a fruit'); showTab('enter'); window.scrollTo(0, 180); return; }
   draft.name = $('#pname').value.trim();
   if (editingId) {
     const i = entries.findIndex(e => e.id === editingId);
@@ -450,9 +463,9 @@ function renderPeople(){
     const d = document.createElement('div'); d.className = 'person';
     const when = new Date(e.ts).toLocaleDateString(undefined, { month:'short', day:'numeric' });
     d.innerHTML = '<div class="pn">' + (e.name ? escapeHtml(e.name) : 'Anonymous') + ' <span class="codechip">' + codeLabel(entryCode(e)) + '</span></div>' +
-      '<div class="pm">Household: <b>' + rowName(e.own) + '</b>' +
+      '<div class="pm">Fruit: <b>' + rowName(e.own) + '</b>' +
       (e.serve ? ' · Serves: <b>' + rowName(e.serve) + '</b>' : '') +
-      ' · ' + markedCount(e) + '/40 chips · ' + when + '</div>';
+      ' · ' + markedCount(e) + ' chips · ' + when + '</div>';
     const eb = document.createElement('button'); eb.className = 'ghostbtn'; eb.textContent = 'Edit';
     eb.addEventListener('click', () => { editingId = e.id; draft = JSON.parse(JSON.stringify(e)); syncForm(); showTab('enter'); });
     const db = document.createElement('button'); db.className = 'ghostbtn danger'; db.textContent = 'Remove';
@@ -526,7 +539,7 @@ function renderTalk(agg, ownCount){
     if (c.G && (!bestPhase || c.G > agg[r.key][bestPhase].G)) { bestPhase = p; bestFrom = 'Needs Help'; }
     if (!bestPhase && c.S) { bestPhase = p; bestFrom = 'Disconnected'; }
   }
-  if (!any) { panel.innerHTML = html + '<div class="small">No chips placed for this household yet.</div>'; return; }
+  if (!any) { panel.innerHTML = html + '<div class="small">No chips placed for this fruit yet.</div>'; return; }
   html += '<div class="talkbox"><div class="ask">Talk it through</div><div class="stat">What does each side know that the other doesn\u2019t?</div></div>';
   if (bestPhase) {
     const to = bestFrom === 'Needs Help' ? 'Connected' : 'Needs Help';
@@ -666,7 +679,7 @@ function download(name, text, type){
 }
 $('#expjson').addEventListener('click', () => { download('cornerstone-collection.json', JSON.stringify({ app:'cornerstone-scorecard', version:1, entries }, null, 2), 'application/json'); toast('Collection downloaded'); });
 $('#expcsv').addEventListener('click', () => {
-  const head = ['Name','Household','Serves','Collection'].concat(ROWS.flatMap(r => PHASES.map(p => r.name + ' — ' + p)));
+  const head = ['Name','Fruit','Serves','Collection'].concat(ROWS.flatMap(r => PHASES.map(p => r.name + ' — ' + p)));
   const q = v => '"' + String(v == null ? '' : v).replace(/"/g, '""') + '"';
   const lines = [head.map(q).join(',')];
   for (const e of entries) lines.push([e.name || '', rowName(e.own), e.serve ? rowName(e.serve) : '', codeLabel(entryCode(e))]
